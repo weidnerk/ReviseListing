@@ -46,8 +46,8 @@ namespace reviselisting
             {
                 try
                 {
-                    string sourcrUrl = p.SourceUrl;
-                    var result = await Scrape.GetDetail(sourcrUrl);
+                    string sourceUrl = p.SourceUrl;
+                    var result = await Scrape.GetDetail(sourceUrl);
                     Console.WriteLine("processing " + (++i) + " of " + count.ToString());
                     if (!string.IsNullOrEmpty(result.availability))
                     {
@@ -59,6 +59,7 @@ namespace reviselisting
                                 Console.WriteLine("OUT OF STOCK " + p.Title);
                                 string reviseResult = scrapeAPI.ebayAPIs.ReviseQty(p.ListedItemID, 0);
                                 dsutil.DSUtil.WriteFile(Log_File, p.ListedItemID + " " + p.Title);
+                                dsutil.DSUtil.WriteFile(Log_File, sourceUrl);
                                 dsutil.DSUtil.WriteFile(Log_File, reviseResult);
                             }
                             else
