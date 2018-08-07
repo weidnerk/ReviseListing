@@ -59,11 +59,13 @@ namespace reviselisting
                                 Console.WriteLine("OUT OF STOCK " + p.Title);
                                 string reviseResult = scrapeAPI.ebayAPIs.ReviseQty(p.ListedItemID, 0);
                                 dsutil.DSUtil.WriteFile(Log_File, p.ListedItemID + " " + p.Title);
+                                dsutil.DSUtil.WriteFile(Log_File, p.SourceUrl);
                                 dsutil.DSUtil.WriteFile(Log_File, reviseResult);
                             }
                             else
                             {
                                 dsutil.DSUtil.WriteFile(Log_File, p.ListedItemID + " " + p.Title);
+                                dsutil.DSUtil.WriteFile(Log_File, p.SourceUrl);
                                 dsutil.DSUtil.WriteFile(Log_File, "Listing quantity already set to 0 - no action taken.");
                             }
                             dsutil.DSUtil.WriteFile(Log_File, string.Empty);
