@@ -20,11 +20,6 @@ namespace reviselisting
 
         static void Main(string[] args)
         {
-            //ReviseFixedPriceItem("223040988437", 99.95);
-
-            //EndFixedPriceItem("223040988359");
-            //EndFixedPriceItem("223040988437");
-
             Task.Run(async () =>
             {
                 await ScanListings();
@@ -66,7 +61,7 @@ namespace reviselisting
                                 if (!string.IsNullOrEmpty(ret))
                                 {
                                     dsutil.DSUtil.WriteFile(Log_File, "prod email failed: " + ret);
-                                    ret = await dsutil.DSUtil.SendMailDev("kevinw@midfinance.com", "OUT OF STO " + p.Title, "revise listing");
+                                    ret = dsutil.DSUtil.SendMailDev("kevinw@midfinance.com", "OUT OF STO " + p.Title, "revise listing");
                                     if (!string.IsNullOrEmpty(ret))
                                     {
                                         dsutil.DSUtil.WriteFile(Log_File, "dev email failed: " + ret);
