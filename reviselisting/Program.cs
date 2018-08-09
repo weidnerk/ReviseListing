@@ -61,6 +61,17 @@ namespace reviselisting
                                 dsutil.DSUtil.WriteFile(Log_File, p.ListedItemID + " " + p.Title);
                                 dsutil.DSUtil.WriteFile(Log_File, p.SourceUrl);
                                 dsutil.DSUtil.WriteFile(Log_File, reviseResult);
+
+                                string ret = await dsutil.DSUtil.SendMailProd("kevinw@midfinance.com", "OUT OF STO " + p.Title, "revise listing", "localhost");
+                                if (!string.IsNullOrEmpty(ret))
+                                {
+                                    dsutil.DSUtil.WriteFile(Log_File, "prod email failed: " + ret);
+                                    ret = await dsutil.DSUtil.SendMailDev("kevinw@midfinance.com", "OUT OF STO " + p.Title, "revise listing");
+                                    if (!string.IsNullOrEmpty(ret))
+                                    {
+                                        dsutil.DSUtil.WriteFile(Log_File, "dev email failed: " + ret);
+                                    }
+                                }
                             }
                             else
                             {
