@@ -20,13 +20,20 @@ namespace reviselisting
 
         static void Main(string[] args)
         {
-            Task.Run(async () =>
+            try
             {
-                await ScanListings();
+                Task.Run(async () =>
+                {
+                    await ScanListings();
 
-            }).Wait();
-            Console.WriteLine("complete");
-           // Console.ReadKey();
+                }).Wait();
+                Console.WriteLine("complete");
+                // Console.ReadKey();
+            }
+            catch (Exception exc)
+            {
+                dsutil.DSUtil.WriteFile(Log_File, "ERROR Main: " + exc.Message);
+            }
 
         }
 
