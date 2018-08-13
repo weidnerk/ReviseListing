@@ -28,12 +28,12 @@ namespace reviselisting
 
                 }).Wait();
                 Console.WriteLine("complete");
+                // Console.ReadKey();
             }
             catch (Exception exc)
             {
                 dsutil.DSUtil.WriteFile(Log_File, "ERROR Main: " + exc.Message);
             }
-            // Console.ReadKey();
 
         }
 
