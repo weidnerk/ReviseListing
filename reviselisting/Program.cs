@@ -43,7 +43,7 @@ namespace reviselisting
 
             int count = db.PostedListings.Count();
             int i = 0;
-            //foreach (PostedListing p in db.PostedListings.Where(r => r.ListedItemID == "223074116525"))
+            //foreach (PostedListing p in db.PostedListings.Where(r => r.ListedItemID == "223072961963"))
             foreach (PostedListing p in db.PostedListings)
             {
                 try
